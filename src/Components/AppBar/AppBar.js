@@ -401,7 +401,9 @@ function MainApp(props) {
                                                 Пополнить кошелёк?
                                             </h2>
                                         </Button>
-                                        <Button>
+                                        <Button
+                                            onClick={handleClose}
+                                        >
                                             <h2>
                                                 Сдать домаху?
                                             </h2>
@@ -430,7 +432,17 @@ function MainApp(props) {
                                                     })
                                                 }}
                                             >
-                                                {name}
+                                                <NavLink
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        textDecoration: 'none',
+                                                        color: '#fff'
+                                                    }}
+                                                    to={'/sendTaskForm'}
+                                                >
+                                                    {name}
+                                                </NavLink>
                                             </Button>
                                         )
                                     })}
