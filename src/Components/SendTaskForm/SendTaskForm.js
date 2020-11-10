@@ -18,7 +18,7 @@ function SendTaskForm(props) {
                         textAlign:"center"
                     }}
                 >
-                    Урок: {props.state.data.Lesson.lessonName}
+                    {props.state.work} урок: {props.state.data.Lesson.lessonName}
                 </h2>
                 <h2
                     style={{

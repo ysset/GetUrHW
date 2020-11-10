@@ -1,9 +1,6 @@
 import React from 'react';
 
 import {makeStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {Container, Grid} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
@@ -13,9 +10,10 @@ import Fade from '@material-ui/core/Fade';
 import {getState} from "../../Redux/Reducer";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import {placeCoins} from '../../Redux/Actions'
 
 import photoRizhego from '../photo/p_tlubNzuBI.jpg'
-import {sendThemeInformation} from '../../Redux/Actions'
+import {sendThemeInformation, placeWorkType} from '../../Redux/Actions'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -49,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
 function MainApp(props) {
 
     const classes = useStyles();
+    const coins = props.state.coins;
     const [open, setOpen] = React.useState(false);
     let [sendOrGetHW, setSendOrGetHW] = React.useState('')
-    let [coins, setCoins] = React.useState(15)
     let [lowCoins, setLowCoins] = React.useState(false)
     let [whatLesson, setWhatLesson] = React.useState([])
     let [work, setWork] = React.useState('')
@@ -76,7 +74,9 @@ function MainApp(props) {
     }
 
     const handleSetWork = (work) => {
+        console.log(work)
         setWork(work)
+        props.placeWorkType(work)
     }
 
     const handleCheckCost = lesson => {
@@ -285,17 +285,7 @@ function MainApp(props) {
 
     return (
         <>
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" className={classes.title}>
-                            Домаха.Есть
-                        </Typography>
-                        <Button color="inherit">Login</Button>
-                        <Button variant={"contained"}>Кошелёк: {coins}</Button>
-                    </Toolbar>
-                </AppBar>
-            </div>
+
             <Container>
                 <Modal
                     aria-labelledby="transition-modal-title"
@@ -507,7 +497,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    sendThemeInformation: (e) => dispatch(sendThemeInformation(e))
+    sendThemeInformation: (e) => dispatch(sendThemeInformation(e)),
+    placeWorkType: (e) => dispatch(placeWorkType(e)),
+    placeCoins: (e) => dispatch(placeCoins(e))
     //any async func :)
 }, dispatch)
 
