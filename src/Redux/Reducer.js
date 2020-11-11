@@ -2,10 +2,10 @@ import {SEND_THEME_INFORMATION, PLACE_WORK_TYPE, PLACE_COINS} from  './Actions'
 
 const initialState = {
     data: {
-        name: 'sui'
+
     },
     work: '',
-    coins: Number
+    coins: 0
 }
 
  export default function reducer(state = initialState, action) {
