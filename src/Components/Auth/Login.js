@@ -7,6 +7,10 @@ import {connect} from "react-redux";
 
 function Login() {
 
+    const handleLoginVK = () => {
+        window.open("http://hw.hitmarker.pro/api/users/vkontakte", "_self")
+    }
+
     return (
         <>
             <Container>
@@ -42,6 +46,11 @@ function Login() {
                         placeholder={"Введите пароль"}
                         required
                     />
+                    <Button
+                        onClick={() => handleLoginVK()}
+                    >
+                        VKAUTH
+                    </Button>
                     <Grid
                         container
                         direction={"row-reverse"}
