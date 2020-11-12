@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState, useCallback } from 'react';
-import { TargetBox } from './TargetBox';
-import { FileList } from './FileList';
+import React, {useCallback, useState} from 'react';
+import {TargetBox} from './TargetBox';
+import {FileList} from './FileList';
 import {Button} from "@material-ui/core";
 import axios from 'axios'
 import {getState} from "../../Redux/Reducer";
@@ -20,10 +19,9 @@ const config = {
 
 const Container = (props) => {
 
-
     const handleServerUpload = async droppedFiles => {
         const lesson = props.state.data
-            console.log('here')
+        console.log('here')
         const form = new FormData()
         form.append('cover', droppedFiles)
         form.append('lesson', lesson)

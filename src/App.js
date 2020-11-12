@@ -1,7 +1,7 @@
 import React from "react";
 
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {getState} from "./Redux/Reducer";
 import {bindActionCreators} from "redux";
@@ -25,18 +25,18 @@ function App() {
         [prefersDarkMode],
     );
 
-  return (
-      <>
-          <BrowserRouter>
-              <Switch>
-                  <ThemeProvider theme={theme}>
-                      <CssBaseline/>
-                      <Routers/>
-                  </ThemeProvider>
-              </Switch>
-          </BrowserRouter>
-      </>
-  );
+    return (
+        <>
+            <BrowserRouter>
+                <Switch>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline/>
+                        <Routers/>
+                    </ThemeProvider>
+                </Switch>
+            </BrowserRouter>
+        </>
+    );
 }
 
 

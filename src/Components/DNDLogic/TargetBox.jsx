@@ -1,6 +1,7 @@
 import React from 'react';
-import { NativeTypes } from 'react-dnd-html5-backend';
-import { useDrop } from 'react-dnd';
+import {NativeTypes} from 'react-dnd-html5-backend';
+import {useDrop} from 'react-dnd';
+
 const style = {
     border: '1px solid gray',
     height: '5rem',
@@ -9,8 +10,8 @@ const style = {
     textAlign: 'center',
 };
 export const TargetBox = (props) => {
-    const { onDrop } = props;
-    const [{ canDrop, isOver }, drop] = useDrop({
+    const {onDrop} = props;
+    const [{canDrop, isOver}, drop] = useDrop({
         accept: [NativeTypes.FILE],
         drop(item, monitor) {
             if (onDrop) {

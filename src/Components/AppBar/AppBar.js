@@ -10,10 +10,9 @@ import Fade from '@material-ui/core/Fade';
 import {getState} from "../../Redux/Reducer";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {placeCoins} from '../../Redux/Actions'
+import {placeCoins, placeWorkType, sendThemeInformation} from '../../Redux/Actions'
 
 import photoRizhego from '../photo/p_tlubNzuBI.jpg'
-import {sendThemeInformation, placeWorkType} from '../../Redux/Actions'
 
 
 const useStyles = makeStyles((theme) => ({

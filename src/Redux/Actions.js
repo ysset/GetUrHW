@@ -8,8 +8,9 @@ export function sendThemeInformation(data) {
         data: data
     }
 }
+
 export function placeWorkType(data) {
-    return{
+    return {
         type: PLACE_WORK_TYPE,
         data: data
     }

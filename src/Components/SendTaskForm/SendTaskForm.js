@@ -10,19 +10,19 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 function SendTaskForm(props) {
     console.log(props.state.data)
 
-    return(
+    return (
         <>
             <Container>
                 <h2
                     style={{
-                        textAlign:"center"
+                        textAlign: "center"
                     }}
                 >
                     {props.state.work} урок: {props.state.data.Lesson.lessonName}
                 </h2>
                 <h2
                     style={{
-                        textAlign:"center"
+                        textAlign: "center"
                     }}
                 >
                     Тема: {props.state.data.theme}

@@ -9,7 +9,7 @@ import Header from "../Header";
 import {Route} from "react-router-dom";
 
 export default function Routes() {
-    return(
+    return (
         <>
             <Route path={'/'} component={Header}/>
             <Route exact path={'/'} component={AppBar}/>

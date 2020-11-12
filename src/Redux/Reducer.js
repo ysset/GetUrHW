@@ -1,14 +1,12 @@
-import {SEND_THEME_INFORMATION, PLACE_WORK_TYPE, PLACE_COINS} from  './Actions'
+import {PLACE_COINS, PLACE_WORK_TYPE, SEND_THEME_INFORMATION} from './Actions'
 
 const initialState = {
-    data: {
-
-    },
+    data: {},
     work: '',
     coins: 0
 }
 
- export default function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
     switch (action.type) {
         case SEND_THEME_INFORMATION:
             return {
@@ -32,6 +30,6 @@ const initialState = {
         default:
             return state;
     }
- }
+}
 
 export const getState = state => state
