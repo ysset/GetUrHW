@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react';
 import {TargetBox} from './TargetBox';
-import {FileList} from './FileList';
 import {Button} from "@material-ui/core";
 import axios from 'axios'
 import {getState} from "../../Redux/Reducer";
@@ -8,7 +7,7 @@ import {bindActionCreators} from "redux";
 import {placeCoins, placeWorkType, sendThemeInformation} from "../../Redux/Actions";
 import {connect} from "react-redux";
 
-const url = "https://pk.hitmarker.pro/api/createAndUpload"
+const url = "http://localhost:8000/upload"
 
 const config = {
     headers: {
@@ -19,31 +18,29 @@ const config = {
 
 const Container = (props) => {
 
-    const handleServerUpload = async droppedFiles => {
+    const [droppedFiles, setDroppedFiles] = useState('');
+
+    const handleServerUpload = async () => {
         const lesson = props.state.data
-        console.log('here')
         const form = new FormData()
-        form.append('cover', droppedFiles)
-        form.append('lesson', lesson)
+        form.append('hw', droppedFiles[0])
+        form.append('user', JSON.stringify(lesson))
         await axios.post(url, form, config)
             .then(res => {
                 console.log(res.data.secureURL)
             })
     }
 
-    const [droppedFiles, setDroppedFiles] = useState([]);
     const handleFileDrop = useCallback((item, monitor) => {
         if (monitor) {
             const files = monitor.getItem().files;
             setDroppedFiles(files);
         }
     }, []);
-    console.log(droppedFiles)
     return (<>
         <TargetBox onDrop={handleFileDrop}/>
-        <FileList files={droppedFiles}/>
         <Button
-            onClick={() => handleServerUpload(droppedFiles)}
+            onClick={handleServerUpload}
             variant={"contained"}
             color={"primary"}
         >
