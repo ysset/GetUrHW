@@ -1,8 +1,6 @@
 import React from "react";
 
 import fetchData from "./Redux/fetch";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {getState} from "./Redux/Reducer";
 import {bindActionCreators} from "redux";
@@ -13,24 +11,12 @@ import {BrowserRouter, Switch} from "react-router-dom"
 
 import Routers from "./Components/Routers/Routers";
 
-const whatFetch = "users/login/success"
+
 const winLanguage = navigator.language
 
 
-function App(props) {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-    const theme = React.useMemo(
-        () =>
-            createMuiTheme({
-                palette: {
-                    type: prefersDarkMode ? 'dark' : 'light',
-                },
-            }),
-        [prefersDarkMode],
-    );
-
-    const options = {
+class App extends React.Component{
+    options = {
         method: "GET",
         credentials: "include",
         headers: {
@@ -39,10 +25,20 @@ function App(props) {
         }
     }
 
-    props.fetchData(whatFetch, options)
-    return (
-        <>
-            {winLanguage === 'ch' &&
+    whatFetch = {
+        loginSucces: "users/login/success",
+        getAllHw: 'getHw'
+    }
+
+    componentDidMount = async () => {
+        this.props.fetchData(this.whatFetch.getAllHw)
+        this.props.fetchData(this.whatFetch.loginSucces, this.options)
+    }
+
+    render() {
+        return (
+            <>
+                {winLanguage === 'ch' &&
                 <>
                     <h1
                         style={{
@@ -50,20 +46,20 @@ function App(props) {
                         }}
                     >Error 404 Not found</h1>
                 </>
-            }
-            {winLanguage !== 'ch' &&
-                <BrowserRouter>
-                    <Switch>
-                        <ThemeProvider theme={theme}>
-                            <CssBaseline/>
+                }
+                {winLanguage !== 'ch' &&
+                    <BrowserRouter>
+                        <Switch>
                             <Routers/>
-                        </ThemeProvider>
-                    </Switch>
-                </BrowserRouter>
-            }
-        </>
-    );
+                        </Switch>
+                    </BrowserRouter>
+                }
+            </>
+        );
+    }
 }
+
+
 
 
 const mapStateToProps = state => ({

@@ -53,7 +53,7 @@ function MainApp(props) {
     let [whatLesson, setWhatLesson] = React.useState([])
     let [work, setWork] = React.useState('')
 
-    const handleSendToProps = (lesson) => {
+    const handleSendToPropsThemeInfo = (lesson) => {
         props.sendThemeInformation(lesson)
     }
 
@@ -97,190 +97,64 @@ function MainApp(props) {
         'Получить 考试',
     ]
 
+    // {
+    //     lessonName: '国际财务管理',
+    //         id: 1,
+    //     themeName: [
+    //     'hui',
+    //     'hui2',
+    //     'hui3',
+    // ],
+    //     costHW: 20,
+    //     costClassWork: 20,
+    //     costTest: 50
+    // },
+
     const stateOfLessons = [
         {
-            lessonName: '国际财务管理',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '国际财务管理'
         },
         {
-            lessonName: '国际经济学',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '国际经济学'
         },
         {
-            lessonName: '国际商务文书',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '国际商务文书'
         },
         {
-            lessonName: '外经贸文献选读',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '外经贸文献选读'
         },
         {
-            lessonName: '网络营销',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '网络营销'
         },
         {
-            lessonName: '国际贸易实务',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '国际贸易实务'
         },
         {
-            lessonName: '物流与供应链管理',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '物流与供应链管理'
         },
         {
-            lessonName: '剑桥商务英语2020',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '剑桥商务英语2020'
         },
         {
-            lessonName: '国际市场营销',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '国际市场营销'
         },
         {
-            lessonName: '中级微观经济学',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '中级微观经济学'
         },
         {
-            lessonName: '大学计算机基础',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '大学计算机基础'
         },
         {
-            lessonName: '中国概况',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '中国概况'
         },
         {
-            lessonName: '高等数学',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '高等数学'
         },
         {
-            lessonName: '大学汉语5',
-            id: 1,
-            themeName: [
-                'hui',
-                'hui2',
-                'hui3',
-                'hui4',
-            ],
-            costHW: 20,
-            costClassWork: 20,
-            costTest: 50
+            lessonName: '大学汉语5'
         },
     ]
+    console.log(props.state.themes)
 
     return (
         <>
@@ -359,12 +233,14 @@ function MainApp(props) {
                                         container
                                         direction={"column"}
                                     >
-                                        {whatLesson.themeName.map(name => {
+                                        {props.state.themes !== undefined && props.state.themes.map(theme => {
+                                            console.log(whatLesson)
+                                            if(theme.lessonName === whatLesson.lessonName && theme.hwStatus !== 'Pending')
                                             return (
                                                 <Button
                                                     onClick={() => handleCheckCost(whatLesson)}
                                                 >
-                                                    {name}
+                                                    {theme.themeName}
                                                 </Button>
                                             )
                                         })}
@@ -383,7 +259,7 @@ function MainApp(props) {
                                         <h1 style={{
                                             textAlign: "center"
                                         }}>
-                                            Нехватает монет
+                                            Не хватает монет
                                         </h1>
                                         <Button>
                                             <h2>
@@ -411,29 +287,31 @@ function MainApp(props) {
                                     container
                                     direction={"column"}
                                 >
-                                    {whatLesson.themeName.map(name => {
-                                        return (
-                                            <Button
-                                                onClick={() => {
-                                                    handleSendToProps({
-                                                        Lesson: whatLesson,
-                                                        theme: name
-                                                    })
-                                                }}
-                                            >
-                                                <NavLink
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                        textDecoration: 'none',
-                                                        color: '#fff'
+                                    {props.state.themes !== undefined && props.state.themes.map(theme => {
+                                        console.log(whatLesson)
+                                        if(theme.lessonName === whatLesson.lessonName && theme.themeType === work)
+                                            return (
+                                                <Button
+                                                    onClick={() => {
+                                                        handleSendToPropsThemeInfo({
+                                                            Lesson: whatLesson,
+                                                            theme: theme
+                                                        })
                                                     }}
-                                                    to={'/sendTaskForm'}
                                                 >
-                                                    {name}
-                                                </NavLink>
-                                            </Button>
-                                        )
+                                                    <NavLink
+                                                        style={{
+                                                            width: '100%',
+                                                            height: '100%',
+                                                            textDecoration: 'none',
+                                                            color: '#fff'
+                                                        }}
+                                                        to={'/sendTaskForm'}
+                                                    >
+                                                        {theme.themeName}
+                                                    </NavLink>
+                                                </Button>
+                                            )
                                     })}
                                 </Grid>
                             </>

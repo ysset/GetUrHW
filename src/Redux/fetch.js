@@ -1,6 +1,7 @@
 import {
     fetchDataError,
     fetchUserDataSuccess,
+    fetchHwDataSuccess,
 } from './Actions';
 
 function fetchData(whatFetch, options) {
@@ -11,6 +12,10 @@ function fetchData(whatFetch, options) {
                 if (res.user !== undefined) {
                     console.log("User data: ", res.user)
                     dispatch(fetchUserDataSuccess(res.user,true))
+                }
+                if (res.themes !== undefined) {
+                    console.log("Hw data: ", res.themes)
+                    dispatch(fetchHwDataSuccess(res.themes))
                 }
                 return res;
             })

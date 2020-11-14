@@ -9,6 +9,8 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 
 function SendTaskForm(props) {
     console.log(props.state.data)
+    console.log(props.state.chooseLesson)
+    props.state.isUpload === 200 && window.open('https://hw.gitmarker.pro','_self')
 
     return (
         <>
@@ -18,14 +20,14 @@ function SendTaskForm(props) {
                         textAlign: "center"
                     }}
                 >
-                    {props.state.work}: {props.state.data.Lesson.lessonName}
+                    {props.state.work}: {props.state.chooseLesson.Lesson.lessonName}
                 </h2>
                 <h2
                     style={{
                         textAlign: "center"
                     }}
                 >
-                    Тема: {props.state.data.theme}
+                    Тема: {props.state.chooseLesson.theme.themeName}
                 </h2>
                 <Grid
                     container

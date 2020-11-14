@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import AppDarkTheme from './AppDarkTheme';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import {applyMiddleware, createStore} from 'redux';
@@ -15,7 +15,7 @@ const store = createStore(reducer, applyMiddleware(...middleWares))
 const app = (
   <React.StrictMode>
       <Provider store={store}>
-          <App />
+          <AppDarkTheme />
       </Provider>
   </React.StrictMode>
 );

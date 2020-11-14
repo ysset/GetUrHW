@@ -1,4 +1,6 @@
 import React, {useCallback, useState} from 'react';
+
+import { FileList } from './FileList';
 import {TargetBox} from './TargetBox';
 import {Button} from "@material-ui/core";
 import axios from 'axios'
@@ -6,6 +8,8 @@ import {getState} from "../../Redux/Reducer";
 import {bindActionCreators} from "redux";
 import {placeCoins, placeWorkType, sendThemeInformation} from "../../Redux/Actions";
 import {connect} from "react-redux";
+import {placeStatusCode} from '../../Redux/Actions'
+import {Redirect} from "react-router-dom";
 
 
 const url = "http://localhost:8000/upload"
@@ -19,20 +23,23 @@ const config = {
 
 const Container = (props) => {
 
-    const [droppedFiles, setDroppedFiles] = useState('');
+    const [droppedFiles, setDroppedFiles] = useState([]);
+    const [send, setSend] = useState(false)
 
     const handleServerUpload = async () => {
-        const lesson = props.state.data
+        console.log(props.state.chooseLesson.theme)
+        const theme = props.state.chooseLesson.theme
+        const user = props.state.userData
         const form = new FormData()
 
         form.append('hw', droppedFiles[0])
-        form.append('user', JSON.stringify(lesson))
-        console.log(lesson)
-
+        form.append('theme', JSON.stringify(theme))
+        form.append('user', JSON.stringify(user))
+        console.log(user)
+        console.log(theme)
+        console.log(droppedFiles[0])
+        setSend(true)
         await axios.post(url, form, config)
-            .then(res => {
-                console.log(res.data.secureURL)
-            })
             .catch(err => {
                 console.log(err)
             })
@@ -44,31 +51,32 @@ const Container = (props) => {
             setDroppedFiles(files);
         }
     }, []);
-    return (<>
-        <TargetBox onDrop={handleFileDrop}/>
-        <Button
-            style={{
-                marginTop: 20
-            }}
-            onClick={handleServerUpload}
-            variant={"contained"}
-            color={"primary"}
-        >
-            Загругизть
-        </Button>
-    </>);
-};
+    return (
+        <>
 
+            {send === true &&  <Redirect to={'/'}/>}
+            <TargetBox onDrop={handleFileDrop}/>
+            <FileList files={droppedFiles}/>
+            <Button
+                style={{
+                    marginTop: 20
+                }}
+                onClick={handleServerUpload}
+                variant={"contained"}
+                color={"primary"}
+            >
+                Загругизть
+            </Button>
+        </>
+    );
+};
 
 const mapStateToProps = state => ({
     state: getState(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    sendThemeInformation: (e) => dispatch(sendThemeInformation(e)),
-    placeWorkType: (e) => dispatch(placeWorkType(e)),
-    placeCoins: (e) => dispatch(placeCoins(e))
-    //any async func :)
+    placeStatusCode: (e) => dispatch(placeStatusCode(e))
 }, dispatch)
 
 export default connect(
