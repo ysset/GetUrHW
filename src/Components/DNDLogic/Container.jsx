@@ -23,11 +23,17 @@ const Container = (props) => {
     const handleServerUpload = async () => {
         const lesson = props.state.data
         const form = new FormData()
+
         form.append('hw', droppedFiles[0])
         form.append('user', JSON.stringify(lesson))
+        console.log(lesson)
+
         await axios.post(url, form, config)
             .then(res => {
                 console.log(res.data.secureURL)
+            })
+            .catch(err => {
+                console.log(err)
             })
     }
 
@@ -40,6 +46,9 @@ const Container = (props) => {
     return (<>
         <TargetBox onDrop={handleFileDrop}/>
         <Button
+            style={{
+                marginTop: 20
+            }}
             onClick={handleServerUpload}
             variant={"contained"}
             color={"primary"}

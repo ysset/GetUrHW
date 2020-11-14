@@ -12,7 +12,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {placeCoins, placeWorkType, sendThemeInformation} from '../../Redux/Actions'
 
-import photoRizhego from '../photo/p_tlubNzuBI.jpg'
+import redBoyPhoto from '../photo/qE_EbxLyfSI.jpg'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -89,12 +89,12 @@ function MainApp(props) {
     }
 
     const stateOfWorkType = [
-        'Сдать ДЗ',
-        'Получить ДЗ',
-        'Сдать классную',
-        'Получить классную',
-        'Сдать экзамен',
-        'Получить экзамен',
+        'Сдать 作业',
+        'Получить 作业',
+        'Сдать 章节',
+        'Получить 章节',
+        'Сдать 考试',
+        'Получить 考试',
     ]
 
     const stateOfLessons = [
@@ -377,7 +377,7 @@ function MainApp(props) {
                                         container
                                         direction={"column"}
                                         style={{
-                                            backgroundImage: photoRizhego,
+                                            backgroundImage: redBoyPhoto,
                                         }}
                                     >
                                         <h1 style={{
@@ -481,8 +481,10 @@ function MainApp(props) {
                             style={{
                                 width: 500,
                                 height: 575,
+                                borderRadius: 10
                             }}
-                            src={photoRizhego}
+                            src={redBoyPhoto}
+                            alt={'Фото рекламы'}
                         />
                     </Grid>
                 </Grid>

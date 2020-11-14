@@ -57,21 +57,23 @@ function Header(props) {
                                     }}
                                     to={'/'}
                                 >
-                                    Домаха.Есть
+                                    <h3>Домаха.Есть</h3>
                                 </NavLink>
                             </Button>
                         </Typography>
-                        <Button color="inherit">
-                            <NavLink
-                                style={{
-                                    color: '#fff',
-                                    textDecoration: 'none'
-                                }}
-                                to={'/auth'}
-                            >
-                                Login
-                            </NavLink>
-                        </Button>
+                        {props.state.isAuth === false &&
+                            <Button color="inherit">
+                                <NavLink
+                                    style={{
+                                        color: '#fff',
+                                        textDecoration: 'none'
+                                    }}
+                                    to={'/auth'}
+                                >
+                                    Login
+                                </NavLink>
+                            </Button>
+                        }
                         <Button variant={"contained"}>Кошелёк: {props.state.coins}</Button>
                     </Toolbar>
                 </AppBar>

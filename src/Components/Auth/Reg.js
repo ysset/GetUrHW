@@ -17,9 +17,7 @@ export default function Reg() {
                     alignItems="center"
                 >
                     <p style={{
-                        fontSamily: 'Times New Roman',
                         fontSize: "250%",
-                        fontFamily: "Verdana",
                         fontsSize: "11pt",
                     }}>
                         Регистрация
@@ -81,10 +79,12 @@ export default function Reg() {
                             <NavLink
                                 to={'/auth'}
                                 style={{
+                                    width: '100%',
+                                    height: '100%',
                                     color: '#fff',
                                     textDecoration: 'none',
                                 }}
-                            > Sign in </NavLink>
+                            > Войти </NavLink>
                         </Button>
                     </Grid>
                     <Grid
@@ -98,7 +98,7 @@ export default function Reg() {
                             variant={"contained"}
                             color="primary"
                         >
-                            Authenticated
+                            Регистрация
                         </Button>
                     </Grid>
                 </Grid>

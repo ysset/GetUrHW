@@ -21,9 +21,7 @@ function Login() {
                     alignItems="center"
                 >
                     <p style={{
-                        fontSamily: 'Times New Roman',
                         fontSize: "250%",
-                        fontFamily: "Verdana",
                         fontsSize: "11pt",
                     }}>
                         Авторизация
@@ -49,7 +47,7 @@ function Login() {
                     <Button
                         onClick={() => handleLoginVK()}
                     >
-                        VKAUTH
+                        VkAuth
                     </Button>
                     <Grid
                         container
@@ -64,7 +62,7 @@ function Login() {
                             variant="contained"
                             color="primary"
                         >
-                            Sign in
+                            Войти
                         </Button>
 
                         <Button
@@ -78,10 +76,12 @@ function Login() {
                             <NavLink
                                 to={'/reg'}
                                 style={{
+                                    width: '100%',
+                                    height: '100%',
                                     color: '#fff',
                                     textDecoration: 'none',
                                 }}
-                            > Registration </NavLink>
+                            > Регистрация </NavLink>
                         </Button>
 
                     </Grid>
