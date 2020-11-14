@@ -7,7 +7,8 @@ import {bindActionCreators} from "redux";
 import {placeCoins, placeWorkType, sendThemeInformation} from "../../Redux/Actions";
 import {connect} from "react-redux";
 
-const url = "http://hw.hitmarker.pro/api/upload"
+
+const url = "http://localhost:8000/upload"
 
 const config = {
     headers: {
