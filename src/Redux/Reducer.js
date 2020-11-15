@@ -6,7 +6,7 @@ const initialState = {
     chooseLesson: {},
     work: '',
     coins: 0,
-    isAuth: true,
+    isAuth: false,
     isUpload: Number,
     userData: {}, //From fetch
 }
