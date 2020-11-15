@@ -1,5 +1,6 @@
 export const SEND_THEME_INFORMATION = 'SEND_THEME_INFORMATION';
 export const PLACE_WORK_TYPE = 'PLACE_WORK_TYPE';
+export const PLACE_ADMIN_TOOLS_INFO = 'PLACE_ADMIN_TOOLS_INFO';
 export const PLACE_COINS = 'PLACE_COINS';
 export const PLACE_STATUS_CODE = 'PLACE_STATUS_CODE';
 export const FETCH_USER_DATA = 'FETCH_DATA_SUCCES';
@@ -16,6 +17,13 @@ export function sendThemeInformation(data) {
 export function placeWorkType(data) {
     return {
         type: PLACE_WORK_TYPE,
+        data: data
+    }
+}
+
+export function placeAdminToolsInfo(data) {
+    return {
+        type: PLACE_ADMIN_TOOLS_INFO,
         data: data
     }
 }

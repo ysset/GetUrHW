@@ -1,22 +1,14 @@
-import {FETCH_HW_DATA, FETCH_USER_DATA, PLACE_COINS, PLACE_WORK_TYPE, SEND_THEME_INFORMATION} from './Actions'
+import {FETCH_HW_DATA, FETCH_USER_DATA, PLACE_COINS, PLACE_WORK_TYPE, SEND_THEME_INFORMATION, PLACE_ADMIN_TOOLS_INFO} from './Actions'
 
 const initialState = {
+    toDisplayAdminTools: {},
     themes: [],
     chooseLesson: {},
     work: '',
     coins: 0,
     isAuth: true,
     isUpload: Number,
-    userData: {
-        "name": {"familyName": "Lutsky", "givenName": "Daniil"},
-        "_id": "5fad71f0a73bd7e8d13c2d9e",
-        "displayName": "Daniil Lutsky",
-        "adminId": "000000",
-        "vkontakteId": "464059729",
-        "username": "ebalbabul",
-        "gender": "male",
-        "registrationDate": "4:10:2020,20:33"
-    }, //From fetch
+    userData: {}, //From fetch
 }
 
 export default function reducer(state = initialState, action) {
@@ -27,6 +19,12 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 ...state.themes,
                 themes: action.themeData
+            }
+        case PLACE_ADMIN_TOOLS_INFO:
+            console.log(action)
+            return {
+                ...state,
+                toDisplayAdminTools: action.data
             }
 
         case FETCH_USER_DATA:

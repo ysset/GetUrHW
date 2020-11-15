@@ -2,6 +2,7 @@ import {
     fetchDataError,
     fetchUserDataSuccess,
     fetchHwDataSuccess,
+    placeAdminToolsInfo,
 } from './Actions';
 
 function fetchData(whatFetch, options) {
@@ -12,6 +13,10 @@ function fetchData(whatFetch, options) {
                 if (res.user !== undefined) {
                     console.log("User data: ", res.user)
                     dispatch(fetchUserDataSuccess(res.user,true))
+                }
+                if (res.users !== undefined) {
+                    console.log("Users data: ", res.users)
+                    dispatch(placeAdminToolsInfo({users: res.users}))
                 }
                 if (res.themes !== undefined) {
                     console.log("Hw data: ", res.themes)
