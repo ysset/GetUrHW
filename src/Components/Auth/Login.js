@@ -44,11 +44,6 @@ function Login() {
                         placeholder={"Введите пароль"}
                         required
                     />
-                    <Button
-                        onClick={() => handleLoginVK()}
-                    >
-                        VkAuth
-                    </Button>
                     <Grid
                         container
                         direction={"row-reverse"}

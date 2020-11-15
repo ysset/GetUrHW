@@ -48,10 +48,10 @@ function MainApp(props) {
     const classes = useStyles();
     const coins = props.state.coins;
     const [open, setOpen] = React.useState(false);
-    let [sendOrGetHW, setSendOrGetHW] = React.useState('')
-    let [lowCoins, setLowCoins] = React.useState(false)
-    let [whatLesson, setWhatLesson] = React.useState([])
-    let [work, setWork] = React.useState('')
+    const [sendOrGetHW, setSendOrGetHW] = React.useState('')
+    const [lowCoins, setLowCoins] = React.useState(false)
+    const [whatLesson, setWhatLesson] = React.useState([])
+    const [work, setWork] = React.useState('')
 
     const handleSendToPropsThemeInfo = (lesson) => {
         props.sendThemeInformation(lesson)
@@ -154,7 +154,6 @@ function MainApp(props) {
             lessonName: '大学汉语5'
         },
     ]
-    console.log(props.state.themes)
 
     return (
         <>
@@ -189,7 +188,6 @@ function MainApp(props) {
                                                         onClick={() => {
                                                             handleSendOrGetHW('send')
                                                             handleSetWork(work)
-
                                                         }}
                                                         variant={"outlined"}
                                                         style={{
@@ -233,15 +231,18 @@ function MainApp(props) {
                                         container
                                         direction={"column"}
                                     >
-                                        {props.state.themes !== undefined && props.state.themes.map(theme => {
+                                        {props.state.themes !== undefined && props.state.themes.map((theme,index) => {
                                             console.log(whatLesson)
                                             if(theme.lessonName === whatLesson.lessonName && theme.hwStatus !== 'Pending')
                                             return (
-                                                <Button
-                                                    onClick={() => handleCheckCost(whatLesson)}
-                                                >
-                                                    {theme.themeName}
-                                                </Button>
+                                                <>
+                                                    <Button
+                                                        key={index}
+                                                        onClick={() => handleCheckCost(whatLesson)}
+                                                    >
+                                                        {theme.themeName}
+                                                    </Button>
+                                                </>
                                             )
                                         })}
                                     </Grid>
@@ -287,30 +288,33 @@ function MainApp(props) {
                                     container
                                     direction={"column"}
                                 >
-                                    {props.state.themes !== undefined && props.state.themes.map(theme => {
+                                    {props.state.themes !== undefined && props.state.themes.map((theme, index) => {
                                         console.log(whatLesson)
                                         if(theme.lessonName === whatLesson.lessonName && theme.themeType === work)
                                             return (
-                                                <Button
-                                                    onClick={() => {
-                                                        handleSendToPropsThemeInfo({
-                                                            Lesson: whatLesson,
-                                                            theme: theme
-                                                        })
-                                                    }}
-                                                >
-                                                    <NavLink
-                                                        style={{
-                                                            width: '100%',
-                                                            height: '100%',
-                                                            textDecoration: 'none',
-                                                            color: '#fff'
+                                                <>
+                                                    <Button
+                                                        key={index}
+                                                        onClick={() => {
+                                                            handleSendToPropsThemeInfo({
+                                                                Lesson: whatLesson,
+                                                                theme: theme
+                                                            })
                                                         }}
-                                                        to={'/sendTaskForm'}
                                                     >
-                                                        {theme.themeName}
-                                                    </NavLink>
-                                                </Button>
+                                                        <NavLink
+                                                            style={{
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                textDecoration: 'none',
+                                                                color: `#fff`
+                                                            }}
+                                                            to={'/sendTaskForm'}
+                                                        >
+                                                            {theme.themeName}
+                                                        </NavLink>
+                                                    </Button>
+                                                </>
                                             )
                                     })}
                                 </Grid>
@@ -336,18 +340,20 @@ function MainApp(props) {
                         >
                             {stateOfLessons.map(lesson => {
                                 return (
-                                    <Button
-                                        className={classes.button}
-                                        variant={"contained"}
-                                        onClick={() => handleOpen(lesson)}
-                                    >
-                                        <NavLink
-                                            style={{
-                                                color: '#000',
-                                                textDecoration: 'none'
-                                            }}
-                                            to={'/'}>{lesson.lessonName}</NavLink>
-                                    </Button>
+                                    <>
+                                        <Button
+                                            className={classes.button}
+                                            variant={"contained"}
+                                            onClick={() => handleOpen(lesson)}
+                                        >
+                                            <NavLink
+                                                style={{
+                                                    color: '#000',
+                                                    textDecoration: 'none'
+                                                }}
+                                                to={'/'}>{lesson.lessonName}</NavLink>
+                                        </Button>
+                                    </>
                                 )
                             })}
                         </Grid>

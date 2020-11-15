@@ -5,8 +5,10 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 export default function AppDarkTheme() {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
+    let system =  navigator.platform.slice(0,5);
+    let color = 'dark';
+    if (system === 'Linux') color = 'light';
+    let prefersDarkMode = useMediaQuery(`(prefers-color-scheme: ${color})`);
     const theme = React.useMemo(
         () =>
             createMuiTheme({

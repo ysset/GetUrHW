@@ -1,18 +1,15 @@
 import React, {useCallback, useState} from 'react';
 
-import { FileList } from './FileList';
-import {TargetBox} from './TargetBox';
-import {Button} from "@material-ui/core";
+import {Button, Grid, Input} from "@material-ui/core";
 import axios from 'axios'
 import {getState} from "../../Redux/Reducer";
 import {bindActionCreators} from "redux";
-import {placeCoins, placeWorkType, sendThemeInformation} from "../../Redux/Actions";
 import {connect} from "react-redux";
 import {placeStatusCode} from '../../Redux/Actions'
 import {Redirect} from "react-router-dom";
 
 
-const url = "http://localhost:8000/upload"
+const url = "http://hw.hitmarker.pro/api/upload"
 
 const config = {
     headers: {
@@ -31,32 +28,47 @@ const Container = (props) => {
         const theme = props.state.chooseLesson.theme
         const user = props.state.userData
         const form = new FormData()
-
-        form.append('hw', droppedFiles[0])
-        form.append('theme', JSON.stringify(theme))
-        form.append('user', JSON.stringify(user))
-        console.log(user)
-        console.log(theme)
-        console.log(droppedFiles[0])
-        setSend(true)
-        await axios.post(url, form, config)
-            .catch(err => {
-                console.log(err)
-            })
+        try {
+            form.append('hw', droppedFiles)
+            form.append('theme', JSON.stringify(theme))
+            form.append('user', JSON.stringify(user))
+            console.log(user)
+            console.log(theme)
+            console.log(droppedFiles)
+            setSend(true)
+            await axios.post(url, form, config)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
-    const handleFileDrop = useCallback((item, monitor) => {
-        if (monitor) {
-            const files = monitor.getItem().files;
-            setDroppedFiles(files);
-        }
-    }, []);
+    const onChangeFile = e => {
+        setDroppedFiles(e.target.files[0]);
+    }
     return (
         <>
 
             {send === true &&  <Redirect to={'/'}/>}
-            <TargetBox onDrop={handleFileDrop}/>
-            <FileList files={droppedFiles}/>
+            <Grid
+                style={{
+                    backgroundColor: "#333",
+                    maxWidth: 680
+                }}
+                container
+                direction={"row"}
+                alignItems={"center"}
+                justify={"center"}
+            >
+                <Input
+                    style={{
+                        height: 40,
+                        paddingBottom: 30
+                    }}
+                    type={'file'}
+                    onChange={onChangeFile}
+                >Добавить файл</Input>
+
+            </Grid>
             <Button
                 style={{
                     marginTop: 20

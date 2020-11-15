@@ -6,13 +6,13 @@ import {
 } from './Actions'
 
 const initialState = {
-    themes: {},
+    themes: [],
     chooseLesson: {},
     work: '',
     coins: 0,
     isAuth: false,
     isUpload: Number,
-    userData: {"name":{"familyName":"Lutsky","givenName":"Daniil"},"_id":"5fad71f0a73bd7e8d13c2d9e","displayName":"Daniil Lutsky","vkontakteId":"464059729","username":"ebalbabul","gender":"male","registrationDate":"4:10:2020,20:33"}, //From fetch
+    userData: {}, //From fetch
 }
 
 export default function reducer(state = initialState, action) {
@@ -29,9 +29,9 @@ export default function reducer(state = initialState, action) {
             console.log(action)
             return {
                 ...state,
+                isAuth: action.isAuth,
                 ...state.userData,
-                userData: action.userData,
-                isAuth: action.isAuth
+                userData: action.userData
             }
 
         case SEND_THEME_INFORMATION:

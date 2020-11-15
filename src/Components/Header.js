@@ -8,6 +8,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {getState} from "../Redux/Reducer";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+import {Grid, Input} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const handleLoginVK = () => {
+    window.open("http://hw.hitmarker.pro/api/users/vkontakte", "_self")
+}
+
 function Header(props) {
 
     const classes = useStyles()
@@ -62,16 +67,15 @@ function Header(props) {
                             </Button>
                         </Typography>
                         {props.state.isAuth === false &&
-                            <Button color="inherit">
-                                <NavLink
-                                    style={{
-                                        color: '#fff',
-                                        textDecoration: 'none'
-                                    }}
-                                    to={'/auth'}
-                                >
-                                    Login
-                                </NavLink>
+                            <Button
+                                style={{
+                                    marginRight: 10
+                                }}
+                                color={"primary"}
+                                variant={"contained"}
+                                onClick={() => handleLoginVK()}
+                            >
+                                Войти через VK
                             </Button>
                         }
                         <Button variant={"contained"}>Кошелёк: {props.state.coins}</Button>

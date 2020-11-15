@@ -13,8 +13,8 @@ export default function Routes() {
         <>
             <Route path={'/'} component={Header}/>
             <Route exact path={'/'} component={AppBar}/>
-            <Route exact path={'/auth'} component={Login}/>
-            <Route exact path={'/reg'} component={Reg}/>
+            {/*<Route exact path={'/auth'} component={Login}/>*/}
+            {/*<Route exact path={'/reg'} component={Reg}/>*/}
             <Route exact path={'/sendTaskForm'} component={SendTaskForm}/>
         </>
     )
