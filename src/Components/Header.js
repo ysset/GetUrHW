@@ -65,6 +65,22 @@ function Header(props) {
                                     <h3>Домаха.Есть</h3>
                                 </NavLink>
                             </Button>
+                            {props.state.isAuth !== false && props.state.userData.adminId !== undefined &&
+                                <Button>
+                                    <NavLink
+                                        style={{
+                                            color: '#fff',
+                                            textDecoration: 'none',
+                                            width: '100%',
+                                            height: '100%'
+                                        }}
+                                        to={`/AdminTools:${props.state.userData.adminId}`}
+                                    >
+                                        <h3>To Admin bar =)</h3>
+                                    </NavLink>
+                                </Button>
+                            }
+
                         </Typography>
                         {props.state.isAuth === false &&
                             <Button
