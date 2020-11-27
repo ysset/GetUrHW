@@ -9,7 +9,7 @@ import {placeStatusCode} from '../../Redux/Actions'
 import {Redirect} from "react-router-dom";
 
 
-const url = "http://localhost:8000/upload"
+const url = "http://hw.hitmarker.pro/api/upload"
 
 const config = {
     headers: {
