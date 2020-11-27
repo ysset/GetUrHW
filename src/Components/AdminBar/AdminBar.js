@@ -7,17 +7,40 @@ import axios from 'axios'
 import {getState} from "../../Redux/Reducer";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {Button, Container, getContrastRatio, Grid} from "@material-ui/core";
+import {Box, Button, Container, Grid} from "@material-ui/core";
 import { Autocomplete } from '@material-ui/lab';
 import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import {makeStyles} from "@material-ui/core/styles";
+import Fade from "@material-ui/core/Fade";
+import {Redirect} from "react-router-dom";
 
+
+const useStyles = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}))
 
 function AdminBar (props) {
 
+    const classes = useStyles();
     const [HW, setHW] = React.useState(false);
     const [theme, setTheme] = React.useState(false);
     const [showWorks, setShowWorks] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
+    const [redirect, setRedirect] = React.useState(false);
+    const [err, setErr] = React.useState('');
 
     const url = `http://hw.hitmarker.pro/api/newHw:${props.state.userData.adminId}`
     const config = {
@@ -41,30 +64,50 @@ function AdminBar (props) {
         completeDate: ''
     }
     const handleCostChange = e =>{
-        console.log(e.target.value)
+        console.log(lesson)
         lesson.cost = e.target.value
     }
     const handleNameChange = e =>{
-        console.log(e.target.innerText)
+        console.log(e)
         lesson.name = e.target.innerText
+        console.log(lesson)
     }
     const handleThemeChange = e =>{
-        console.log(e.target.value)
+        console.log(lesson)
         lesson.theme = e.target.value
     }
     const handleThemeTypeChange = e =>{
-        console.log(e.target.innerText)
+        console.log(lesson)
         lesson.themeType = e.target.innerText
     }
     const handleCompleteDateChange = e =>{
         console.log(lesson)
         lesson.completeDate = e.target.value
     }
+
+    const handleOpen = err => {
+        setErr(err)
+        setOpen(true)
+    }
+
     const handleUploadHw = async () => {
-        console.log('here')
-        const form = new FormData()
-        form.append('lesson', JSON.stringify(lesson))
-        await axios.post(url, form, config)
+
+        if (lesson.theme === '') {
+            handleOpen('Заполни тему или запиши снова')
+        } else if (lesson.name === '') {
+            handleOpen('Выбери снова название урока или выбери название урока')
+        } else if (lesson.completeDate === '') {
+            handleOpen('Зполни Дату снова')
+        } else if (lesson.themeType === '') {
+            handleOpen('Выбери тип сдачи или выбери тип сдачи снова')
+        } else {
+            console.log('here')
+            const form = new FormData()
+            form.append('lesson', JSON.stringify(lesson))
+            await axios.post(url, form, config)
+            window.location.reload();
+        }
+
     }
 
     const handleGetAllUsers = async () => {
@@ -95,6 +138,10 @@ function AdminBar (props) {
     const handleShowWorks = () => {
         showWorks ? setShowWorks(false) : setShowWorks(true)
     }
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
 
     const stateOfLessons = [
@@ -150,6 +197,26 @@ function AdminBar (props) {
 
     return(
         <>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={open}>
+                        <Box className={classes.paper}>
+                            <h2>{err}</h2>
+                            <p>{JSON.stringify(lesson)}</p>
+                        </Box>
+                    </Fade>
+                </Modal>
+            
             <Grid
                 container
                 direction="row"
@@ -296,6 +363,7 @@ function AdminBar (props) {
                                         />
 
                                         <Input
+                                            type={'Date'}
                                             onChange={handleCompleteDateChange}
                                             placeholder={'дд.мм.гггг - deadline'}
                                         />

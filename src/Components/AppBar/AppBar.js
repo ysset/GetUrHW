@@ -157,7 +157,6 @@ function MainApp(props) {
 
     return (
         <>
-
             <Container>
                 <Modal
                     aria-labelledby="transition-modal-title"

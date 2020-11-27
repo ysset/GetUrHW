@@ -6,9 +6,19 @@ const initialState = {
     chooseLesson: {},
     work: '',
     coins: 0,
-    isAuth: false,
+    isAuth: true,
     isUpload: Number,
-    userData: {}, //From fetch
+    userData: {
+        name: { familyName: 'Lutsky', givenName: 'Daniil' },
+        _id: '5fad71f0a73bd7e8d13c2d9e',
+        displayName: 'Daniil Lutsky',
+        vkontakteId: '464059729',
+        username: 'ebalbabul',
+        gender: 'male',
+        registrationDate: '4:10:2020,20:33',
+        __v: 0,
+        adminId: '000000'
+    }, //From fetch
 }
 
 export default function reducer(state = initialState, action) {

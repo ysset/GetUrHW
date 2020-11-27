@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 
 import {Button, Grid, Input} from "@material-ui/core";
 import axios from 'axios'
@@ -9,7 +9,7 @@ import {placeStatusCode} from '../../Redux/Actions'
 import {Redirect} from "react-router-dom";
 
 
-const url = "http://hw.hitmarker.pro/api/upload"
+const url = "http://localhost:8000/upload"
 
 const config = {
     headers: {

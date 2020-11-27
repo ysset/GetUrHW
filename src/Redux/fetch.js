@@ -7,7 +7,7 @@ import {
 
 function fetchData(whatFetch, options) {
     return dispatch => {
-        fetch(`http://hw.hitmarker.pro/api/${whatFetch}`, options)
+        fetch(`http://localhost:8000/${whatFetch}`, options)
             .then(res => res.json())
             .then(res => {
                 if (res.user !== undefined) {

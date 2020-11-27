@@ -59,9 +59,6 @@ class App extends React.Component{
     }
 }
 
-
-
-
 const mapStateToProps = state => ({
     state: getState(state)
 })
